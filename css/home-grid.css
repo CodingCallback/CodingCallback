@@ -1,0 +1,93 @@
+.home-grid .row {
+    margin-bottom: 1.25rem;
+}
+
+.home-grid figure {
+    width: 100%;
+    height: 230px;
+}
+.feature-post figure {
+    height: 480px;
+}
+
+.home-grid img {
+    height: 100%;
+    width: 100%;
+
+}
+
+.home-grid h3 a {
+    display: block;
+}
+
+.home-grid .summary {
+    padding: 20px;
+}
+.sidebar .widget {
+    margin-bottom: 20px;
+}
+.sidebar .summary {
+    padding: 10px;
+}
+
+.post-listing h3 {
+    height: 5em;
+}
+.feature-post h3 {
+    /* height: 4em; */
+}
+
+.feature-post, .post-listing {
+    width: 100%
+}
+.feature-post h3 {
+    letter-spacing: 0.025em;
+    line-height: 43px;
+    padding-bottom: 35px;
+}
+.feature-post .summary {
+    padding: 20px;
+}
+
+
+.sidebar>.summary {
+    margin-bottom: 20px;
+}
+
+.sidebar h2 {
+    font-size: 0.94rem;
+    display: inline-block;
+    letter-spacing: 0.05em;
+    padding: 5px 65px 4px 10px;
+    margin-top: 0;
+    margin-bottom: 3px;
+    padding-bottom: 14px;
+}
+
+.sidebar ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.sidebar li {
+    margin-bottom: 23px;
+}
+
+.sidebar h3 {
+    margin: 0;
+    font-size: 0.78em;
+    line-height: 1.4em;
+    letter-spacing: 0.025em;
+    padding-bottom: 10px;
+    height: 3.42em;
+}
+
+.sidebar h3 a {
+    font-size: 1em;
+    font-weight: 500;
+    display: block;
+}
+

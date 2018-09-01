@@ -1,0 +1,48 @@
+html,body {
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+}
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 900;
+}
+
+p {
+    font-size: 1em;
+}
+/* .navbar-brand {
+    text-transform: uppercase;
+    font-size: 40px;
+    font-weight: 900;
+    font-family: "Poppins", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+} 
+*/
+.navbar-brand {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 40px;
+}
+.nav-item {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+.page-title h1 {
+    font-family: "Poppins", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 900;
+    font-size: 3em;
+    line-height: 1.5em;
+    text-transform: none;
+}
+
+.post-listing h3 {
+    font-family: "Poppins", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 900;
+}
+
+.feature-post h3 {
+    font-size: 2rem;
+    font-family: "Poppins", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 900;
+}

@@ -1,0 +1,39 @@
+.meta {
+    -webkit-font-smoothing: antialiased;
+    display: block;
+    font-size: 1rem;
+    /* font-weight: 500; */
+    letter-spacing: 0.03em;
+    /* margin-bottom: 40px; */
+    padding-top: 20px;
+    position: relative;
+    /* text-transform: uppercase; */
+}
+.meta span {
+    text-transform: uppercase;
+    font-weight: 900;
+}
+.home-grid .meta {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    line-height: 1em;
+    margin-bottom: 0;
+    padding: 0;
+
+}
+.post-listing .meta {
+    height: 2em;
+    margin-bottom: 1em;
+    line-height: 1.5em;
+}
+
+.meta a {
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.home-grid .meta a {
+    font-weight: 600;
+    padding-right: 10px;
+}

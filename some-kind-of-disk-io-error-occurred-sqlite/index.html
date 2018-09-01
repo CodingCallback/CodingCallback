@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="I got the extremely helpful &quot;Some kind of disk I/O error occurred&quot; message using the System.Data.SQLite .net assembly today. This was a big SQLite show stopper. So I thought it was about time I figured out what was causing this. The error was occurring when I tried to post an ...">
+    <meta name="keywords" content="">
+    <meta name="author" content="Steve McArthur">
+    <meta property="og:title" content="Some kind of disk I/O error occurred - SQLite">
+    <meta property="og:description" content="I got the extremely helpful &quot;Some kind of disk I/O error occurred&quot; message using the System.Data.SQLite .net assembly today. This was a big SQLite show stopper. So I thought it was about time I figured out what was causing this. The error was occurring when I tried to post an ...">
+    <meta property="og:image" content="/img/SQLite2.png">
+    <meta property="og:url" content="https://www.codecallback.co.uk/some-kind-of-disk-io-error-occurred-sqlite">
+    
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Some kind of disk I/O error occurred - SQLite | Coding Callback</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:900|Roboto:300,400,400i,500,700,900" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/nav.css" rel="stylesheet">
+    <link href="/css/footer.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/home-grid.css" rel="stylesheet">
+    <link href="/css/meta.css" rel="stylesheet">
+    <link href="/css/color.css" rel="stylesheet">
+    <link href="/css/fonts.css" rel="stylesheet">
+ 
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+       <span class="sym"><img src="/img/sign.png" ></span>
+       <div class="item">
+      <span class="sml">if</span><span class="brand">Coding</span><span class="brand2">Callback</span><span class="sml">then</span>
+      </div>
+    </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Contact</a>
+      </li>
+    </ul>
+  </div>
+  </div>
+</nav>          <div class="header-content">
+        <div class="overlay">
+        <div class="container">
+        <div class="header-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="meta">
+         
+    <span>sqlite, .net</span> | December 14th 2010 | By Steve McArthur     
+</div>                <div class="page-title">
+                    <h1>Some kind of disk I/O error occurred - SQLite</h1>
+                </div>
+
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+    </div>
+<div class="container main">
+    <article class="post-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>I got the extremely helpful &quot;Some kind of disk I/O error occurred&quot; message using the System.Data.SQLite .net assembly today. This was a big SQLite show stopper. So I thought it was about time I figured out what was causing this. The error was occurring when I tried to post an update to the SQLite database in the local App_Data folder of an asp.net application. As soon as the application attempted to post the update I got the dreaded &quot;Some kind of..&quot; error and a SQLite journal file was created in the database folder. After this, the database became unavailable. It became available again once the journal file was deleted, but I was then back in the same situation once another update was attempted. The curious thing was that this behaviour didn&#39;t occur in the development environment, only when uploaded to the live server. My first thought was that the application for some reason didn&#39;t have rights to write to the App_Data folder. But the journal file was writing to the location with no troubles. Finally I hit upon a forum post on the System.Data.SQLite forum. This pointed in the direction of using the statement to set the journal_mode value to something other than &quot;DELETE&quot;. The PRAGMA statement is executed exactly like a query, so all that needs to be done is to execute the statement using a SQLiteCommand object in the same way you would execute any other SQL statement.</p>
+<pre><code class="language-csharp">
+(SQLiteConnection conn = new SQLiteConnection(sqliteConnectionString)) {
+    conn.Open();
+    SQLiteCommand cmd = new SQLiteCommand();
+    cmd.Connection = conn;
+    string pragma = "PRAGMA journal_mode = OFF";
+    cmd.CommandText = pragma;
+    cmd.ExecuteNonQuery();
+}
+</code></pre>
+            </div>
+        </div>
+    </article>
+</div> 
+        <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row top">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <h4>Coding Callback</h4>
+                    <p>
+                    Tutor Interventions in Leicester helps your child succeed and thrive so that they can be all that they can.
+                    </p>               
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <h4>Contacts</h4>
+                    <ul class="contact-details">
+						<li class="address">Leicester, United Kingdom</li>
+						<li class="telephone"></li>
+						<li class="email"><a href="mailto:  "> &nbsp;contact@codecallback.com</a></li>
+						<!--<li class="schedule"></li>-->															
+			        </ul>              
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <h4>Coding Callback</h4>
+                    <p>
+                    Tutor Interventions in Leicester helps your child succeed and thrive so that they can be all that they can.
+                    </p>               
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                   <div class="widget">
+                    <h4>Contacts</h4>
+                    <ul class="contact-details">
+						<li class="address">Leicester, United Kingdom</li>
+						<li class="telephone"></li>
+						<li class="email"><a href="mailto:  "> &nbsp;contact@codecallback.com</a></li>
+						<!--<li class="schedule"></li>-->															
+			        </ul>              
+                </div>
+            </div>
+
+        </div>
+        <div class="bottom">
+            Copyright © Coding Callback 2018 | <a href="/terms-and-conditions/">Terms and Conditions</a> | <a href="/privacy-policy/">Privacy</a>
+        </div>
+      </div>
+    </footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="/js/prism.js"></script>
+
+
+    </body>
+</html>
+
