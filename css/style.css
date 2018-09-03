@@ -158,6 +158,12 @@ pre[class*="language-"] {
     border-radius: 0;
     box-shadow: none;
 }
+blockquote {
+    margin: 0 0 1rem 0;
+    padding: 1.2rem;
+    background: #eee;
+    border-left: 8px solid #ccc;
+}
 /* .header-content .overlay {
     background: url(/img/jscode2.png);
     background-repeat: no-repeat;

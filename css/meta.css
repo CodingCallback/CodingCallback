@@ -24,8 +24,10 @@
 }
 .post-listing .meta {
     height: 2em;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     line-height: 1.5em;
+    position: absolute;
+    bottom: 0;
 }
 
 .meta a {

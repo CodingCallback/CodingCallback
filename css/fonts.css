@@ -39,6 +39,7 @@ p {
 .post-listing h3 {
     font-family: "Poppins", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 900;
+    margin-bottom: 2em;
 }
 
 .feature-post h3 {

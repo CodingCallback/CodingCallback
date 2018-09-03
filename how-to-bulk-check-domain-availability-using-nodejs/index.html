@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="Whilst developing a website for a client I had a need to bulk check the availability of potential .com domain names. Finding .com domain names for the words you would like to use can be quite a job. Most of the websites that allow you to check whether a domain ...">
     <meta name="keywords" content="">
     <meta name="author" content="Steve McArthur">
-    <meta property="og:title" content="Coding Callback">
-    <meta property="og:description" content="">
-    <meta property="og:image" content="">
-    <meta property="og:url" content="">
+    <meta property="og:title" content="How to Bulk Check Domain Availability Using Node.js">
+    <meta property="og:description" content="Whilst developing a website for a client I had a need to bulk check the availability of potential .com domain names. Finding .com domain names for the words you would like to use can be quite a job. Most of the websites that allow you to check whether a domain ...">
+    <meta property="og:image" content="/img/vba-laptop.jpg">
+    <meta property="og:url" content="https://www.codecallback.co.uk/how-to-bulk-check-domain-availability-using-nodejs">
     
     <link rel="icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
@@ -31,7 +31,7 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <title>Coding Callback</title>
+    <title>How to Bulk Check Domain Availability Using Node.js | Coding Callback</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:900|Roboto:300,400,400i,500,700,900" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
@@ -90,85 +90,132 @@
     </ul>
   </div>
   </div>
-</nav>      <div class="container main">
-<div class="home-grid">
-<div class="row">
-    <div class="col-lg-12">
-        <div class="feature-post">
-                    <figure>      
-                <img src="/img/vba-laptop.jpg" alt="Vba laptop"> 
-            </figure>
-            <div class="summary">                       
-                <h3>
-                    <a href="/how-to-bulk-check-domain-availability-using-nodejs" title="How to Bulk Check Domain Availability Using Node.js" class="title-link">
-                    How to Bulk Check Domain Availability Using Node.js                    </a>  
-                </h3>                                      
-                    <div class="meta">
+</nav>          <div class="header-content">
+        <div class="overlay">
+        <div class="container">
+        <div class="header-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="meta">
          
     <span>Node.js</span> | September 3rd 2018 | By Steve McArthur     
-</div>            </div>
+</div>                <div class="page-title">
+                    <h1>How to Bulk Check Domain Availability Using Node.js</h1>
+                </div>
+
+            </div>
+        </div>
+        </div>
+        </div>
         </div>
     </div>
-</div>
+<div class="container main">
+    <article class="post-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Whilst developing a website for a client I had a need to bulk check the availability of potential .com domain names. Finding .com domain names for the words you would like to use can be quite a job.</p>
+<p>Most of the websites that allow you to check whether a domain name is available only let you check one domain at a time. They can also be quite slow and push adverts for .neverheardof TLDs.</p>
+<p>I also wanted to easily test for differing word orders. Like &quot;pinkelephants.com&quot; and &quot;elephantspink.com&quot;.</p>
+<p>Node.js has a NPM package available called <a href="https://www.npmjs.com/package/whois">whois</a> (formally &quot;node-whois&quot;). This does a whois lookup for any domain name you supply to it.</p>
+ <pre><code class="language-javascript">
+    var whois = require('whois');
+    whois.lookup("pinkelephants.com", function (err, data) {
+            if (err) {
+                console.error(err);
+            } else {
+                //do something with data
+        //which will just be a typical whois text output
+            }
 
-<div class="row">
-    <div class="col-lg-4">
-             <div class="post-listing">
-            <figure>      
-                <img src="/img/vba-laptop.jpg" alt="Vba laptop"> 
-            </figure>
-            <div class="widget summary">                       
-                <h3>
-                    <a href="/how-to-call-a-website-from-vba" title="How to Call a Website or Webservice from VBA and Populate your Excel Data with Live Updates" class="title-link">
-                    How to Call a Website or Webservice from VBA and Populate your Excel Data with Live Updates                    </a>  
-                </h3>                                      
-               <div class="meta">
-            <span>Excel, VBA</span><br>September 2nd 2018 | By Steve McArthur  
-     
-</div>            </div>
+    });
+</code></pre>
+
+<p>Typically the data returned for a .com query where a domain already registered will be something like this:</p>
+<blockquote>
+<p>   Domain Name: PINKELEPHANTS.COM
+   Registry Domain ID: 104511878_DOMAIN_COM-VRSN
+   Registrar WHOIS Server: whois.uniregistrar.com
+   Registrar URL: <a href="http://www.uniregistrar.com">http://www.uniregistrar.com</a>
+   Updated Date: 2017-11-29T15:22:08Z
+   Creation Date: 2003-10-03T18:26:29Z
+   Registry Expiry Date: 2019-10-03T18:26:29Z 
+   ...</p>
+</blockquote>
+<p>Where the domain is NOT registered it will be:</p>
+<blockquote>
+<p>No match for domain &quot;ELEPHANTSPINK.COM&quot;.
+...</p>
+</blockquote>
+<p>So I search for the phrase on the first line of: &quot;No match for domain&quot;.</p>
+<p>What I did then was get my script to read a list of words or phrases I wanted to test for. If I wanted to test different word orders I would seperate the words with a <code>|</code> and the script will use this to split the two words and try two tests with one first and the other second.</p>
+<pre><code class="language-javascript">
+    var whois = require('whois');
+    var fs = require('fs');
+    var path = require('path');
+
+    function doLookup(domain, cb) {
+        whois.lookup(domain, function (err, data) {
+            console.log("lookup returned");
+            if (err) {
+                console.error(err);
+            } else {
+                cb(err, data, domain)
+            }
+        });
+    }
+    var noMatch = new RegExp(/No match for domain/);
+
+    var txt = fs.readFileSync("./domains.txt", "utf-8");
+    var items = txt.split("\r\n");
+    var domainList = [];
+    function addDomain(name) {
+        if (name) {
+            domainList.push(name + ".com");
+            console.log(name + " added");
+        } else {
+            console.log("cannot add blank name...");
+        }
+    }
+    var i = 0;
+    for (i = 0; i < items.length; i++) {
+        var words = items[i].split("|");
+        if (words.length > 1) {
+            addDomain(words[0] + words[1]);
+            addDomain(words[1] + words[0]);
+        } else {
+            addDomain(words[0])
+        }
+    }
+
+    var k = 0;
+    var output = [];
+    var writeResults = true;
+    function onReturn(err, data, domain) {
+        var lines = data.split('\n');
+        var firstLine = lines[0];
+        console.log(firstLine);
+        var m = firstLine.match(noMatch);
+        var available = m ? true : false;
+        console.log(domain + ": " + available);
+        output.push(domain + ", " + available);
+        if (writeResults) {
+            fs.writeFileSync(domain + "-result.txt", data, 'utf-8');
+        }
+        k++;
+        if (k < domainList.length) {
+            doLookup(domainList[k], onReturn);
+        } else {
+            var txtfile = domainList[0] + "-" + domainList[domainList.length - 1] + ".txt";
+            var txt = output.join("\n");
+            fs.writeFileSync(txtfile, txt, "utf-8");
+            console.log(domainList.length + " domains processed");
+        }
+    }
+
+    doLookup(domainList[0], onReturn);
+</code></pre>            </div>
         </div>
-    </div>
-    <div class="col-lg-4">
-                 <div class="post-listing">
-            <figure>      
-                <img src="/img/excel-table.png" alt="Excel table"> 
-            </figure>
-            <div class="widget summary">                       
-                <h3>
-                    <a href="/create-interactive-chart-in-excel" title="Create an interactive chart in excel" class="title-link">
-                    Create an interactive chart in excel                    </a>  
-                </h3>                                      
-               <div class="meta">
-            <span>Excel, VBA</span><br>August 28th 2018 | By Steve McArthur  
-     
-</div>            </div>
-        </div>    </div>
-    <div class="col-lg-4">
-                 <div class="post-listing">
-            <figure>      
-                <img src="/img/customer-loyalty-3.jpg" alt="Customer loyalty 3"> 
-            </figure>
-            <div class="widget summary">                       
-                <h3>
-                    <a href="/customer-loyalty-ultimate-guide" title="Customer Loyalty: The Ultimate Guide" class="title-link">
-                    Customer Loyalty: The Ultimate Guide                    </a>  
-                </h3>                                      
-               <div class="meta">
-            <span>Marketing</span><br>July 13th 2018 | By Steve McArthur  
-     
-</div>            </div>
-        </div>    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-4">
-
-    </div>
-    <div class="col-lg-8">
-
-    </div>
-</div>
-</div>
+    </article>
 </div> 
         <!-- Footer -->
     <footer class="footer">
