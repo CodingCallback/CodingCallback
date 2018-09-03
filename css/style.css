@@ -154,9 +154,9 @@ a:focus {
 }
 
 pre[class*="language-"] {
-    border:none;
+    border:3px solid #ccc;
     border-radius: 0;
-    box-shadow: 0;
+    box-shadow: none;
 }
 /* .header-content .overlay {
     background: url(/img/jscode2.png);

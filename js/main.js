@@ -14,6 +14,7 @@ $(function() {
     }
 
    var currentItem = 0;
+  
 
     $(".navbar-brand").click(function(ev){
         ev.preventDefault();

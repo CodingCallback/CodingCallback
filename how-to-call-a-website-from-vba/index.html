@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="I got the extremely helpful &quot;Some kind of disk I/O error occurred&quot; message using the System.Data.SQLite .net assembly today. This was a big SQLite show stopper. So I thought it was about time I figured out what was causing this. The error was occurring when I tried to post an ...">
+    <meta name="description" content="Calling a website URL in VBA is fairly straight forward. The key is to use a “MSXML2.serverXMLHTTP” assembly reference.  Public Sub CallWebPage() Dim xmlhttp As Object Dim myurl As String Dim txt As String 'use "CreatObject" to reference the external method 'in the "MSXML2" assembly Set xmlhttp = CreateObject("MSXML2.serverXMLHTTP") myurl ...">
     <meta name="keywords" content="">
     <meta name="author" content="Steve McArthur">
-    <meta property="og:title" content="Some kind of disk I/O error occurred - SQLite">
-    <meta property="og:description" content="I got the extremely helpful &quot;Some kind of disk I/O error occurred&quot; message using the System.Data.SQLite .net assembly today. This was a big SQLite show stopper. So I thought it was about time I figured out what was causing this. The error was occurring when I tried to post an ...">
-    <meta property="og:image" content="/img/SQLite2.png">
-    <meta property="og:url" content="https://www.codecallback.co.uk/some-kind-of-disk-io-error-occurred-sqlite">
+    <meta property="og:title" content="How to Call a Website or Webservice from VBA and Populate your Excel Data with Live Updates">
+    <meta property="og:description" content="Calling a website URL in VBA is fairly straight forward. The key is to use a “MSXML2.serverXMLHTTP” assembly reference.  Public Sub CallWebPage() Dim xmlhttp As Object Dim myurl As String Dim txt As String 'use "CreatObject" to reference the external method 'in the "MSXML2" assembly Set xmlhttp = CreateObject("MSXML2.serverXMLHTTP") myurl ...">
+    <meta property="og:image" content="/img/vba-laptop.jpg">
+    <meta property="og:url" content="https://www.codecallback.co.uk/how-to-call-a-website-from-vba">
     
     <link rel="icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
@@ -31,7 +31,7 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <title>Some kind of disk I/O error occurred - SQLite | Coding Callback</title>
+    <title>How to Call a Website or Webservice from VBA and Populate your Excel Data with Live Updates | Coding Callback</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:900|Roboto:300,400,400i,500,700,900" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
@@ -100,9 +100,9 @@
             <div class="col-lg-12">
                 <div class="meta">
          
-    <span>sqlite, .net</span> | December 14th 2010 | By Steve McArthur     
+    <span>Excel, VBA</span> | September 2nd 2018 | By Steve McArthur     
 </div>                <div class="page-title">
-                    <h1>Some kind of disk I/O error occurred - SQLite</h1>
+                    <h1>How to Call a Website or Webservice from VBA and Populate your Excel Data with Live Updates</h1>
                 </div>
 
             </div>
@@ -115,17 +115,108 @@
     <article class="post-content">
         <div class="row">
             <div class="col-lg-12">
-                <p>I got the extremely helpful &quot;Some kind of disk I/O error occurred&quot; message using the System.Data.SQLite .net assembly today. This was a big SQLite show stopper. So I thought it was about time I figured out what was causing this. The error was occurring when I tried to post an update to the SQLite database in the local App_Data folder of an asp.net application. As soon as the application attempted to post the update I got the dreaded &quot;Some kind of..&quot; error and a SQLite journal file was created in the database folder. After this, the database became unavailable. It became available again once the journal file was deleted, but I was then back in the same situation once another update was attempted. The curious thing was that this behaviour didn&#39;t occur in the development environment, only when uploaded to the live server. My first thought was that the application for some reason didn&#39;t have rights to write to the App_Data folder. But the journal file was writing to the location with no troubles. Finally I hit upon a forum post on the System.Data.SQLite forum. This pointed in the direction of using the statement to set the journal_mode value to something other than &quot;DELETE&quot;. The PRAGMA statement is executed exactly like a query, so all that needs to be done is to execute the statement using a SQLiteCommand object in the same way you would execute any other SQL statement.</p>
-<pre><code class="language-csharp">
-(SQLiteConnection conn = new SQLiteConnection(sqliteConnectionString)) {
-    conn.Open();
-    SQLiteCommand cmd = new SQLiteCommand();
-    cmd.Connection = conn;
-    string pragma = "PRAGMA journal_mode = OFF";
-    cmd.CommandText = pragma;
-    cmd.ExecuteNonQuery();
-}
+                <p>Calling a website URL in VBA is fairly straight forward. The key is to use a
+“MSXML2.serverXMLHTTP” assembly reference.</p>
+<pre><code class="language-visual-basic">
+Public Sub CallWebPage()
+    Dim xmlhttp As Object
+    Dim myurl As String
+    Dim txt As String
+
+    'use "CreatObject" to reference the external method
+    'in the "MSXML2" assembly
+    Set xmlhttp = CreateObject("MSXML2.serverXMLHTTP")
+    myurl = "http://www.1112.net/lastpage.html"
+    xmlhttp.Open "GET", myurl, False
+    xmlhttp.Send
+
+    'this will return the html text of the website - basically
+    'what you see when you "view source" in the browser
+    txt = xmlhttp.responseText
+    Sheets(1).UsedRange.ClearContents
+
+    'stick all the html text in to the first cell
+    'of the first sheet
+    Sheets(1).Cells(1, 1).Value = txt
+
+End Sub
 </code></pre>
+
+<p>Here we are calling an external windows dll method that makes a http call to the
+URL we supply. It then returns the html in plain text form. Despite the “XML”
+bit in the assembly name and method name it really has nothing to do with Xml.
+This is just a hangover from the early days of the web.</p>
+<p>This example is not that useful on its own. But it opens up the possibility of
+calling a webservice to extract data over the web. The two tasks, calling a
+website and calling a webservice are not really any different. The difference is
+the format of the data returned. In the case of a web service the chances are
+that the format will be JSON. So we will need to be able to process the JSON
+text into a VBA object.</p>
+<pre><code class="language-visual-basic">
+Public Sub GetCurrencyService()
+
+    Dim xmlhttp As Object
+    Dim myurl As String
+    Dim JSON As Object
+    Dim results As Object
+    Dim USD_GBP As Object
+    Dim GBP_USD As Object
+
+    Set xmlhttp = CreateObject("MSXML2.serverXMLHTTP")
+    myurl = "https://free.currencyconverterapi.com/api/v6/convert?q=USD_GBP,GBP_USD"
+
+    xmlhttp.Open "GET", myurl, False
+    xmlhttp.Send
+
+    'use the JsonConverter module to convert the returned
+    'text json to a VBA object
+    Set JSON = JsonConverter.ParseJson(xmlhttp.responseText)
+
+    Set results = JSON("results")
+    Set USD_GBP = results("USD_GBP")
+    Set GBP_USD = results("GBP_USD")
+
+    Sheets(1).Cells(1, 1).Value = "US Dollars to GB Pounds"
+    Sheets(1).Cells(1, 2).Value = "GB Pounds to US Dollars"
+    Sheets(1).Cells(2, 1).Value = USD_GBP("val")
+    Sheets(1).Cells(2, 2).Value = GBP_USD("val")
+
+    MsgBox ("complete")
+
+End Sub
+</code></pre>
+
+<p>In this example I have called a webservice that returns currency exchange
+information. This data is in the following format:</p>
+<pre><code class="language-JSON">
+{
+    "query": {
+        "count": 2
+    },
+    "results": {
+        "USD_GBP": {
+            "id": "USD_GBP",
+            "val": 0.771545,
+            "to": "GBP",
+            "fr": "USD"
+        },
+        "GBP_USD": {
+            "id": "GBP_USD",
+            "val": 1.296101,
+            "to": "USD",
+            "fr": "GBP"
+        }
+    }
+}
+
+</code></pre>
+
+<p>So to process this data I used Tim Hall’s VBA <a href="https://github.com/VBA-tools/VBA-JSON">JsonConverter</a> module. You don’t always need a converter for
+JSON. Remember, it IS just text so you can use all the string manipulation
+functions you’re familiar with to extract what you need. And, infact, that is
+what I would recommend for simple data and uses. But if the data returned gets
+to the size of the data above then you’re probably better off using the
+JsonConverter.</p>
             </div>
         </div>
     </article>
