@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Calling a website URL in VBA is fairly straight forward. The key is to use a “MSXML2.serverXMLHTTP” assembly reference.  Public Sub CallWebPage() Dim xmlhttp As Object Dim myurl As String Dim txt As String 'use "CreatObject" to reference the external method 'in the "MSXML2" assembly Set xmlhttp = CreateObject("MSXML2.serverXMLHTTP") myurl ...">
+    <meta name="description" content="Calling a website URL in VBA is fairly straight forward. The key is to use a MSXML2.serverXMLHTTP dll reference. This does all the heavy lifting involved in making a http request to a URL.  Public Sub CallWebPage() Dim xmlhttp As Object Dim myurl As String Dim txt As String 'use ...">
     <meta name="keywords" content="">
     <meta name="author" content="Steve McArthur">
     <meta property="og:title" content="How to Call a Website or Webservice from VBA and Populate your Excel Data with Live Updates">
-    <meta property="og:description" content="Calling a website URL in VBA is fairly straight forward. The key is to use a “MSXML2.serverXMLHTTP” assembly reference.  Public Sub CallWebPage() Dim xmlhttp As Object Dim myurl As String Dim txt As String 'use "CreatObject" to reference the external method 'in the "MSXML2" assembly Set xmlhttp = CreateObject("MSXML2.serverXMLHTTP") myurl ...">
+    <meta property="og:description" content="Calling a website URL in VBA is fairly straight forward. The key is to use a MSXML2.serverXMLHTTP dll reference. This does all the heavy lifting involved in making a http request to a URL.  Public Sub CallWebPage() Dim xmlhttp As Object Dim myurl As String Dim txt As String 'use ...">
     <meta property="og:image" content="/img/vba-laptop.jpg">
     <meta property="og:url" content="https://www.codecallback.co.uk/how-to-call-a-website-from-vba">
     
@@ -114,30 +114,29 @@
         <div class="row">
             <div class="col-lg-12">
                 <p>Calling a website URL in VBA is fairly straight forward. The key is to use a
-“MSXML2.serverXMLHTTP” assembly reference.</p>
-<pre><code class="language-visual-basic">
-Public Sub CallWebPage()
-    Dim xmlhttp As Object
-    Dim myurl As String
-    Dim txt As String
+<code>MSXML2.serverXMLHTTP</code> dll reference. This does all the heavy lifting involved in making a http request to a URL.</p>
+<pre data-code="VBA" ><code class="language-visual-basic">
+    Public Sub CallWebPage()
+        Dim xmlhttp As Object
+        Dim myurl As String
+        Dim txt As String
 
-    'use "CreatObject" to reference the external method
-    'in the "MSXML2" assembly
-    Set xmlhttp = CreateObject("MSXML2.serverXMLHTTP")
-    myurl = "http://www.1112.net/lastpage.html"
-    xmlhttp.Open "GET", myurl, False
-    xmlhttp.Send
+        'use "CreatObject" to reference the external method
+        'in the "MSXML2" dll
+        Set xmlhttp = CreateObject("MSXML2.serverXMLHTTP")
+        myurl = "http://www.1112.net/lastpage.html"
+        xmlhttp.Open "GET", myurl, False
+        xmlhttp.Send
 
-    'this will return the html text of the website - basically
-    'what you see when you "view source" in the browser
-    txt = xmlhttp.responseText
-    Sheets(1).UsedRange.ClearContents
+        'this will return the html text of the website - basically
+        'what you see when you "view source" in the browser
+        txt = xmlhttp.responseText
 
-    'stick all the html text in to the first cell
-    'of the first sheet
-    Sheets(1).Cells(1, 1).Value = txt
+        'stick all the html text in to the first cell
+        'of the first sheet
+        Sheets(1).Cells(1, 1).Value = txt
 
-End Sub
+    End Sub
 </code></pre>
 
 <p>Here we are calling an external windows dll method that makes a http call to the
@@ -150,43 +149,43 @@ website and calling a webservice are not really any different. The difference is
 the format of the data returned. In the case of a web service the chances are
 that the format will be JSON. So we will need to be able to process the JSON
 text into a VBA object.</p>
-<pre><code class="language-visual-basic">
-Public Sub GetCurrencyService()
+<pre data-code="VBA"><code class="language-visual-basic">
+    Public Sub GetCurrencyService()
 
-    Dim xmlhttp As Object
-    Dim myurl As String
-    Dim JSON As Object
-    Dim results As Object
-    Dim USD_GBP As Object
-    Dim GBP_USD As Object
+        Dim xmlhttp As Object
+        Dim myurl As String
+        Dim JSON As Object
+        Dim results As Object
+        Dim USD_GBP As Object
+        Dim GBP_USD As Object
 
-    Set xmlhttp = CreateObject("MSXML2.serverXMLHTTP")
-    myurl = "https://free.currencyconverterapi.com/api/v6/convert?q=USD_GBP,GBP_USD"
+        Set xmlhttp = CreateObject("MSXML2.serverXMLHTTP")
+        myurl = "https://free.currencyconverterapi.com/api/v6/convert?q=USD_GBP,GBP_USD"
 
-    xmlhttp.Open "GET", myurl, False
-    xmlhttp.Send
+        xmlhttp.Open "GET", myurl, False
+        xmlhttp.Send
 
-    'use the JsonConverter module to convert the returned
-    'text json to a VBA object
-    Set JSON = JsonConverter.ParseJson(xmlhttp.responseText)
+        'use the JsonConverter module to convert the returned
+        'text json to a VBA object
+        Set JSON = JsonConverter.ParseJson(xmlhttp.responseText)
 
-    Set results = JSON("results")
-    Set USD_GBP = results("USD_GBP")
-    Set GBP_USD = results("GBP_USD")
+        Set results = JSON("results")
+        Set USD_GBP = results("USD_GBP")
+        Set GBP_USD = results("GBP_USD")
 
-    Sheets(1).Cells(1, 1).Value = "US Dollars to GB Pounds"
-    Sheets(1).Cells(1, 2).Value = "GB Pounds to US Dollars"
-    Sheets(1).Cells(2, 1).Value = USD_GBP("val")
-    Sheets(1).Cells(2, 2).Value = GBP_USD("val")
+        Sheets(1).Cells(1, 1).Value = "US Dollars to GB Pounds"
+        Sheets(1).Cells(1, 2).Value = "GB Pounds to US Dollars"
+        Sheets(1).Cells(2, 1).Value = USD_GBP("val")
+        Sheets(1).Cells(2, 2).Value = GBP_USD("val")
 
-    MsgBox ("complete")
+        MsgBox ("complete")
 
-End Sub
+    End Sub
 </code></pre>
 
 <p>In this example I have called a webservice that returns currency exchange
 information. This data is in the following format:</p>
-<pre><code class="language-JSON">
+<pre data-code="JSON"><code class="language-JSON">
 {
     "query": {
         "count": 2

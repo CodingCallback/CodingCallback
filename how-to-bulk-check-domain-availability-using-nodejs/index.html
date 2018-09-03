@@ -117,14 +117,14 @@
 <p>Most of the websites that allow you to check whether a domain name is available only let you check one domain at a time. They can also be quite slow and push adverts for .neverheardof TLDs.</p>
 <p>I also wanted to easily test for differing word orders. Like &quot;pinkelephants.com&quot; and &quot;elephantspink.com&quot;.</p>
 <p>Node.js has a NPM package available called <a href="https://www.npmjs.com/package/whois">whois</a> (formally &quot;node-whois&quot;). This does a whois lookup for any domain name you supply to it.</p>
- <pre><code class="language-javascript">
+ <pre data-code="Node.js"><code class="language-javascript">
     var whois = require('whois');
     whois.lookup("pinkelephants.com", function (err, data) {
             if (err) {
                 console.error(err);
             } else {
                 //do something with data
-        //which will just be a typical whois text output
+                //which will just be a typical whois text output
             }
 
     });
@@ -148,7 +148,7 @@
 </blockquote>
 <p>So I search for the phrase on the first line of: &quot;No match for domain&quot;.</p>
 <p>What I did then was get my script to read a list of words or phrases I wanted to test for. If I wanted to test different word orders I would seperate the words with a <code>|</code> and the script will use this to split the two words and try two tests with one first and the other second.</p>
-<pre><code class="language-javascript">
+<pre data-code="Node.js"><code class="language-javascript">
     var whois = require('whois');
     var fs = require('fs');
     var path = require('path');

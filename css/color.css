@@ -1,8 +1,12 @@
 html,
 body,
-p,
-a {
+p {
   color: #4a4a4a;
+}
+a:hover,
+a:focus {
+    text-decoration: none;
+    color: #4a4a4a;
 }
 .page-title h1 {
   color: #fff;
@@ -123,3 +127,26 @@ a {
 .contact-details li {
   color: #fff;
 }
+
+pre[data-code]::before {
+  font-size: 1rem;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  content: attr(data-code);
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #999;
+  padding: 0.5rem 1rem;
+}
+pre[data-code="VBA"]::before {
+  background: #07a;
+}
+pre[data-code="JSON"]::before {
+  background: #fab1a0;
+}
+pre[data-code="Node.js"]::before {
+  background: #026e00;
+}
+

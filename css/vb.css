@@ -6,7 +6,7 @@
 code.language-visual-basic,
 pre.language-visual-basic {
   color: #000;
-  background: #fff;
+  background: #f5f3fd;
   text-shadow: none;
   font-family: "Courier New", Courier, Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   font-size: 0.89em;
@@ -29,7 +29,7 @@ pre.language-visual-basic ::-moz-selection,
 code.language-visual-basic::-moz-selection,
 code.language-visual-basic::-moz-selection {
   text-shadow: none;
-  background: #fff;
+  background: #f5f3fd;
 }
 pre.language-visual-basic::selection,
 pre.language-visual-basic ::selection,
@@ -49,10 +49,11 @@ pre.language-visual-basic {
   padding: 1em;
   margin: .5em 0;
   overflow: auto;
+  padding-top: 1.5em;
 }
 :not(pre) > code.language-visual-basic,
 pre.language-visual-basic {
-  background: #fff;
+  background: #f5f3fd;
 }
 /* Inline code */
 :not(pre) > code.language-visual-basic {
@@ -119,7 +120,7 @@ pre.language-visual-basic .language-css .token.string,
 code.language-visual-basic .style .token.string,
 pre.language-visual-basic .style .token.string {
   color: #000;
-  background: #fff;
+  background: #f5f3fd;
 }
 code.language-visual-basic .token.atrule,
 pre.language-visual-basic .token.atrule,
@@ -156,4 +157,7 @@ pre.language-visual-basic .token.italic {
 code.language-visual-basic .token.entity,
 pre.language-visual-basic .token.entity {
   cursor: help;
+}
+pre.language-visual-basic {
+  /* border: 1px solid #c5c5c5 !important; */
 }
