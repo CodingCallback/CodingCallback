@@ -121,7 +121,7 @@
         Dim myurl As String
         Dim txt As String
 
-        'use "CreatObject" to reference the external method
+        'use "CreateObject" to reference the external method
         'in the "MSXML2" dll
         Set xmlhttp = CreateObject("MSXML2.serverXMLHTTP")
         myurl = "http://www.1112.net/lastpage.html"
@@ -143,9 +143,10 @@
 URL we supply. It then returns the html in plain text form. Despite the “XML”
 bit in the assembly name and method name it really has nothing to do with Xml.
 This is just a hangover from the early days of the web.</p>
+<h3 id="calling-a-webservice">Calling a Webservice</h3>
 <p>This example is not that useful on its own. But it opens up the possibility of
 calling a webservice to extract data over the web. The two tasks, calling a
-website and calling a webservice are not really any different. The difference is
+website and calling a webservice, are not really any different. The difference is
 the format of the data returned. In the case of a web service the chances are
 that the format will be JSON. So we will need to be able to process the JSON
 text into a VBA object.</p>
@@ -173,6 +174,7 @@ text into a VBA object.</p>
         Set USD_GBP = results("USD_GBP")
         Set GBP_USD = results("GBP_USD")
 
+        'put the data into Excel
         Sheets(1).Cells(1, 1).Value = "US Dollars to GB Pounds"
         Sheets(1).Cells(1, 2).Value = "GB Pounds to US Dollars"
         Sheets(1).Cells(2, 1).Value = USD_GBP("val")
@@ -208,7 +210,8 @@ information. This data is in the following format:</p>
 
 </code></pre>
 
-<p>So to process this data I used Tim Hall’s VBA <a href="https://github.com/VBA-tools/VBA-JSON">JsonConverter</a> module. You don’t always need a converter for
+<h3 id="json-converter">JSON Converter</h3>
+<p>To process this data I used Tim Hall’s VBA <a href="https://github.com/VBA-tools/VBA-JSON">JsonConverter</a> module. You don’t always need a converter for
 JSON. Remember, it IS just text so you can use all the string manipulation
 functions you’re familiar with to extract what you need. And, infact, that is
 what I would recommend for simple data and uses. But if the data returned gets
