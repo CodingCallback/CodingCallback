@@ -9,7 +9,7 @@
     <meta name="author" content="Steve McArthur">
     <meta property="og:title" content="How to Bulk Check Domain Availability Using Node.js">
     <meta property="og:description" content="Whilst developing a website for a client I had a need to bulk check the availability of potential .com domain names. Finding .com domain names for the words you would like to use can be quite a job. Most of the websites that allow you to check whether a domain ...">
-    <meta property="og:image" content="/img/vba-laptop-sml.jpg">
+    <meta property="og:image" content="/img/node-domain-checker.jpg">
     <meta property="og:url" content="https://www.codecallback.co.uk/how-to-bulk-check-domain-availability-using-nodejs">
     
     <link rel="icon" href="/favicon.ico">
@@ -91,7 +91,7 @@
   </div>
   </div>
 </nav>          <div class="header-content">
-        <div class="overlay">
+        <div class="overlay nodejs">
         <div class="container">
         <div class="header-wrapper">
         <div class="row">
@@ -147,7 +147,7 @@
 ...</p>
 </blockquote>
 <p>So I search for the phrase on the first line of: &quot;No match for domain&quot;.</p>
-<p>What I did then was get my script to read a list of words or phrases I wanted to test for. If I wanted to test different word orders I would seperate the words with a <code>|</code> and the script will use this to split the two words and try two tests with one first and the other second.</p>
+<p>What I did then was get my script to read a list of words or phrases I wanted to test for. If I wanted to test different word orders I would seperate the words with a <code>|</code> (pipe) and the script will use this to split the two words and try two tests with one first and the other second.</p>
 <pre data-code="Node.js"><code class="language-javascript">
     var whois = require('whois');
     var fs = require('fs');
