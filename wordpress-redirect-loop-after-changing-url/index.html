@@ -113,11 +113,10 @@
     <article class="post-content">
         <div class="row">
             <div class="col-lg-12">
-              <div class="source">Download the source of this post <a href="">here</a></div>
                 <p>Ok - you&#39;ve made a change to your URL settings in your Wordpress dashboard and you go to test your new URL and find that your site is now unavailable with the browser giving you the message that there are &quot;too many redirects&quot;. Of course, now that the site is unavailable you are unable to log into your Wordpress admin and change the URL back. Panic sets in.</p>
 <p>I&#39;ve actually done this quite a few times. In this situation, the only option you have is to connect to the database directly and change the URL values in the MySQL table. Not as scary as it first sounds. The admin page settings for your Wordpress URLs map directly on to the &quot;options&quot; table in your Wordpress database. So you need to get access to the Wordpress database. If your site is hosted by a third party, chances are that this will be via <a href="https://www.phpmyadmin.net/">phpMyAdmin</a>. If it is locally hosted, you can probably still use phpMyAdmin, but likely you will have some other MySQL database management application such as MySQL workbench. In any case, log in to MySQL. Find your Wordpress database and find the &quot;~_options&quot; table - where the &quot;~&quot; represents a prefix (often &quot;wp&quot;) that was chosen at installation time.</p>
 <p>Once &quot;~_options&quot; table is found look for the records with the option_name &quot;siteurl&quot; and &quot;home&quot;. They will often be the first two records in the table. The &quot;option_value&quot; is what you want to change and you will almost certainly recognise the values in those fields. Change these values to what you want. In phpMyAdmin, just double click in the field and edit the value. And that&#39;s it. Done. You might need to refresh your browser or clear its cache, but the change will be available straight away.</p>
-            </div>
+                            </div>
         </div>
     </article>
 </div> 

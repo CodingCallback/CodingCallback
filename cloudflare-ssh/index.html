@@ -113,7 +113,6 @@
     <article class="post-content">
         <div class="row">
             <div class="col-lg-12">
-              <div class="source">Download the source of this post <a href="">here</a></div>
                 <p>I&#39;ve been using Cloudflare for a number of years to manage DNS settings for the various websites I look after. It&#39;s handy having all your DNS stuff in the one location and user interface rather than having to hop around to different hosts/domain providers and always having to look up which domain provider handles which domain. And, you know, some of those user interfaces are not that user-friendly, let alone consistent between providers. Not to mention that I do have a deeps seated suspicion about having your host also controlling your domain - but maybe that&#39;s just me.</p>
 <p>Of course, the big selling point for Cloudflare is its use as a Content Delivery Network (CDN) and the tools it has for speeding up your website. Since it channels your website through its own Nameservers it caches your site on its network and can even display your site when your host itself is down.</p>
 <p>Because it is channelling your website, Cloudflare is able to provide HTTPS/SSL with what it calls <a href="https://blog.cloudflare.com/introducing-universal-ssl/">&quot;Universal SSL&quot;</a>. This means that it is able to provide an SSL certificate for any site using its nameservers - including its free customers.</p>
@@ -127,7 +126,7 @@
 </ol>
 <p><img src="/img/page-rule-https.jpg" alt="Page Rule for HTTPS"></p>
 <p>Careful with this one if you want to catch subdomains like <a href="http://www.mywebsite.com">www.mywebsite.com</a> or blog.mywebsite.com. Don&#39;t forget the star before the domain name as this is what will catch the subdomain. I did forget this and couldn&#39;t work out why some URLs were going to https and some weren&#39;t</p>
-            </div>
+                            </div>
         </div>
     </article>
 </div> 

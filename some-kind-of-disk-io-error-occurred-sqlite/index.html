@@ -113,7 +113,6 @@
     <article class="post-content">
         <div class="row">
             <div class="col-lg-12">
-              <div class="source">Download the source of this post <a href="">here</a></div>
                 <p>I got the extremely helpful &quot;Some kind of disk I/O error occurred&quot; message using the System.Data.SQLite .net assembly today. This was a big SQLite show stopper. So I thought it was about time I figured out what was causing this. The error was occurring when I tried to post an update to the SQLite database in the local App_Data folder of an asp.net application. As soon as the application attempted to post the update I got the dreaded &quot;Some kind of..&quot; error and a SQLite journal file was created in the database folder. After this, the database became unavailable. It became available again once the journal file was deleted, but I was then back in the same situation once another update was attempted. The curious thing was that this behaviour didn&#39;t occur in the development environment, only when uploaded to the live server. My first thought was that the application for some reason didn&#39;t have rights to write to the App_Data folder. But the journal file was writing to the location with no troubles. Finally I hit upon a forum post on the System.Data.SQLite forum. This pointed in the direction of using the statement to set the journal_mode value to something other than &quot;DELETE&quot;. The PRAGMA statement is executed exactly like a query, so all that needs to be done is to execute the statement using a SQLiteCommand object in the same way you would execute any other SQL statement.</p>
 <pre><code class="language-csharp">
 (SQLiteConnection conn = new SQLiteConnection(sqliteConnectionString)) {
@@ -125,7 +124,7 @@
     cmd.ExecuteNonQuery();
 }
 </code></pre>
-            </div>
+                            </div>
         </div>
     </article>
 </div> 
