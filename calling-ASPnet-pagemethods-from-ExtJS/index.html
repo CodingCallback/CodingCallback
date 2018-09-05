@@ -102,7 +102,7 @@
 </div>                <div class="page-title">
                     <h1>Calling ASP.net pagemethods from ExtJS</h1>
                 </div>
-
+          
             </div>
         </div>
         </div>
@@ -113,6 +113,7 @@
     <article class="post-content">
         <div class="row">
             <div class="col-lg-12">
+              <div class="source">Download the source of this post <a href="">here</a></div>
                 <p>I use asp.net PageMethods in conjunction with ExtJS almost on a daily basis. PageMethods are simply server side methods that are callable from client side script. However, Microsoft assumes that you will be using PageMethods in conjunction with its Ajax framework, in particular the ScriptManager control which creates a JavaScript proxy on the client side for the server side PageMethods. If you are using a JavaScript framework like ExtJS then you probably don&#39;t want to include the unnecessary clutter and page weight of the MS Ajax framework. Luckily PageMethods are callable like any other Ajax call. The trick is that it is expecting the name of the method as a forward slash parameter after the page name and the methods parameters as jsonData in the postdata. In ExtJS this translates as something like this:</p>
 <pre><code class="language-javascript">
 Ext.Ajax.request({
@@ -193,6 +194,7 @@ Ext.Ajax.request({
     <script src="/js/prism/prism-markup.js"></script>
     <script src="/js/prism/prism-markup-templating.js"></script>
     <script src="/js/prism/prism-handlebars.js"></script>
+    <script src="/js/prism/prism-coffeescript.js"></script>
 
 
 

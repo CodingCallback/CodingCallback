@@ -160,17 +160,22 @@ pre[data-code="Node.js"]::before,
   background: #026e00;
 }
 pre[data-code="Markdown"]::before,
-.nodejs {
+.markdown {
   background: #6c5ce7;
 }
 pre[data-code="Handlebars"]::before,
-.nodejs {
+.handlebars {
   background: #e67e22;
 }
 pre[data-code="Filesystem"]::before,
-.nodejs {
+.filesystem {
   background: #f39c12;
 }
 p code {
   background: #eee;
+}
+blockquote,
+.source {
+  background-color: #eee;
+  border-left: 8px solid #ccc;
 }

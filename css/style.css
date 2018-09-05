@@ -155,8 +155,6 @@ pre[class*="language-"] {
 blockquote {
     margin: 0 0 1rem 0;
     padding: 1.2rem;
-    background: #eee;
-    border-left: 8px solid #ccc;
 }
 pre {
     position: relative;
@@ -179,7 +177,11 @@ pre {
  */
 
 
- pre[data-code="filesystem"] .punctuation,
- pre[data-code="filesystem"] .keyword {
+ pre[data-code="Filesystem"] .punctuation,
+ pre[data-code="Filesystem"] .keyword {
     display: none;
+ }
+ .source {
+     text-align: center;
+     margin-bottom: 1em;
  }
