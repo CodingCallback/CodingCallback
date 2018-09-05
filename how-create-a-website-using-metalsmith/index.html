@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Metalsmith is a Node.js static website generator. The core application itself does little other than store some global application metadata and write out files from a source to a build directory. Useful functionality is provided by a series of plugins that slot in to the core application read/write process to ...">
+    <meta name="keywords" content="">
+    <meta name="author" content="Steve McArthur">
+    <meta property="og:title" content="How to Create a Static Website Using Metalsmith">
+    <meta property="og:description" content="Metalsmith is a Node.js static website generator. The core application itself does little other than store some global application metadata and write out files from a source to a build directory. Useful functionality is provided by a series of plugins that slot in to the core application read/write process to ...">
+    <meta property="og:image" content="/img/node-domain-checker.jpg">
+    <meta property="og:url" content="https://www.codecallback.co.uk/how-create-a-website-using-metalsmith">
+    
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>How to Create a Static Website Using Metalsmith | Coding Callback</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:900|Roboto:300,400,400i,500,700,900" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/prism-vscode.css" rel="stylesheet">
+    <link href="/css/vb.css" rel="stylesheet">
+    <link href="/css/nav.css" rel="stylesheet">
+    <link href="/css/footer.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/home-grid.css" rel="stylesheet">
+    <link href="/css/meta.css" rel="stylesheet">
+    <link href="/css/color.css" rel="stylesheet">
+    <link href="/css/fonts.css" rel="stylesheet">
+
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+       <span class="sym"><img src="/img/sign.png" ></span>
+       <div class="item">
+      <span class="sml">if</span><span class="brand">Coding</span><span class="brand2">Callback</span><span class="sml">then</span>
+      </div>
+    </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Contact</a>
+      </li>
+    </ul>
+  </div>
+  </div>
+</nav>          <div class="header-content">
+        <div class="overlay nodejs">
+        <div class="container">
+        <div class="header-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="meta">
+         
+    <span>Node.js</span> | September 4th 2018 | By Steve McArthur     
+</div>                <div class="page-title">
+                    <h1>How to Create a Static Website Using Metalsmith</h1>
+                </div>
+
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+    </div>
+<div class="container main">
+    <article class="post-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <p><a href="http://www.metalsmith.io/">Metalsmith</a> is a Node.js static website generator. The core application itself does little other than store some global application metadata and write out files from a source to a build directory. Useful functionality is provided by a series of plugins that slot in to the core application read/write process to modify what is being written. Metalsmith is like a long train line with plugins being stations on the route where people jump on and change the content of the carriages.</p>
+<p>What this gives us is simplicity. We add functionality when and if we need it. And this functionality is all implemented in the same way.</p>
+<h3 id="the-basic-setup">The Basic Setup</h3>
+<p>To get started with Metalsmith, firstly create a Node.js project in the normal way (<code>npm init</code>). Then install Metalsmith with the npm command <code>npm install metalsmith</code>. In the root of your project you will need (at least) two folders. One will be for your source files: css,js,markdown etc. The other will be for your template/layout files. It doesn&#39;t actually matter what you call your folders as this is part of your application setup. I tend to call them <code>src</code> and <code>layouts</code>, but you might see <code>contents</code> and <code>templates</code> in another project. This is my setup:</p>
+<pre data-code="Filesystem"><code class="language-javascript">
+    var metalsmith-basic-site: [
+        layouts,
+        src,
+        "index.js",
+        "package.json"
+    ]
+</code></pre>
+
+
+<p>The final part is the application entry file - again, filename is not important. It&#39;s just what is run by node to run the build process. Typically this is called either <code>build.js</code> or <code>index.js</code>. We&#39;ll stick with <code>index.js</code>.</p>
+<p>To get you started you can download the basic example project <a href="https://github.com/codingcallback/metalsmith-basic-site/archive/master.zip">here</a>. In this basic example the index.js file looks like this:</p>
+ <pre data-code="Node.js"><code class="language-javascript">
+    var Metalsmith  = require('metalsmith');
+    var markdown    = require('metalsmith-markdown');
+    var layouts     = require('metalsmith-layouts');
+    var permalinks  = require('metalsmith-permalinks');
+
+    Metalsmith(__dirname)
+    .metadata({
+        title: "My Static Site & Blog",
+        description: "It's about saying »Hello« to the World.",
+        generator: "Metalsmith",
+        url: "http://www.metalsmith.io/"
+    })
+    .source('./src')
+    .destination('./build')
+    .clean(false)
+    .use(markdown())
+    .use(permalinks())
+    .use(layouts({
+        engine: 'handlebars'
+    }))
+    .build(function(err, files) {
+        if (err) { throw err; }
+    });
+</code></pre>
+
+<p>All Metalsmith applications are initiated in this form. Extra functionality is added by passing a function to the <code>use</code> method. This is where plugins get plugged in. The <code>metadata</code> method sets the global metadata available to all pages in the application. So you can change the site title here and not on every page where it appears. The <code>source</code> and <code>destination</code> methods do what the tin says. The <code>clean</code> method tells Metalsmith whether or not to delete the destination/build folder before each build. The <code>build</code> method is always the last station on the Metalsmith line. This tells Metalsmith to start the build process and passes a callback after this process has finished.</p>
+<h3 id="plugins">Plugins</h3>
+<p>This application uses three plugins: markdown, permalinks and layouts. Markdown to process markdown into html. Permalinks to create folders in the build destination so that <code>about.html</code> becomes <code>about\index.html</code>. And layouts to process our files with whatever templating language we have chosen to use - handlebars in this case here.</p>
+<p>You will notice that all of the plugins are executed functions. They actually return a function that is then executed by Metalsmith on the train line. Doing it that way allows us to pass parameters to the plugin as they are assigned to Metalsmith.</p>
+<h3 id="templates">Templates</h3>
+<p>Metalsmith can use just about any template system available. The basic example project here uses handlebars and looks like this:</p>
+ <pre data-code="Handlebars"><code class="language-markup">
+
+    &lt;!doctype html>
+    &lt;html lang="en">
+        &lt;head>
+            &lt;meta charset="UTF-8" />
+            &lt;title>{{ title }}&lt;/title>
+            &lt;meta name="description" content="{{ description }}">
+        &lt;/head>
+    &lt;body>
+        &lt;header>
+            &lt;p>
+            &lt;a href="/">Home&lt;/a>
+            &lt;/p>
+        &lt;/header>
+        &lt;h1>{{ title }}&lt;/h1>
+        &lt;p>{{ description }}&lt;/p>
+
+        {{{ contents }}}
+
+        &lt;footer>
+            &lt;p>Generated with {{ generator }} &mdash; &lt;a href="{{ url }}">{{ url }}&lt;/a>&lt;/p>
+        &lt;/footer>
+    &lt;/body>
+    &lt;/html>
+
+</code></pre>
+
+<p>An individual page file will look something like this:</p>
+<pre data-code="Markdown"><code class="language-markdown">
+---
+title: My First Post
+date: 2012-08-20
+layout: post.html
+---
+
+An interesting post about how it's going to be different this time around. I'm going to write a lot more nowadays and use this blog to improve my writing.
+</code></pre>
+
+<p>As you can see, inside the template tags <code>{{}}</code> are variables such as <code>title</code>, <code>description</code> or <code>url</code>. These are all properties we either defined in the metalsmith metadata inside the index.js file or the <code>front matter</code> metadata of a specific page. The two are then merged together and passed to each page template as members of the local scope or <code>this</code> property. In some templates you may need to refer to the <code>this</code> context using <code>@</code>, such as <code>@title</code> rather than just <code>this</code>. The effect is that these values will be printed out into the generated file when invoked within a template&#39;s tags. Where a page property conflicts with a Metalsmith metadata property , such as <code>title</code>, the page property will take precedence.</p>
+<p>The neat part here is that we can define whatever properties we want on the metadata that is passed to pages. We just add it in the index.js file. We can even define functions on the metadata that can be called from a page.</p>
+<h3 id="next-steps">Next Steps</h3>
+<p>This is the bare-bones setup for Metalsmith. In all likelihood you will quickly find the need for further plugins. The ones I generally can&#39;t do without are:</p>
+<ul>
+<li><a href="https://www.npmjs.com/package/metalsmith-partial">metalsmith-partial</a>. Support for partial templates for inclusion in layouts/templates.</li>
+<li><a href="https://www.npmjs.com/package/metalsmith-collections">metalsmith-collections</a>. Groups output files into defined collections suitable for building next/previous links, article indexes/homepage listings.</li>
+<li><a href="https://www.npmjs.com/package/metalsmith-page-titles">metalsmith-page-titles</a>.  Implements the ability to add a global site title to the page title based on your markdown front matter and Metalsmith metadata.</li>
+<li><a href="https://www.npmjs.com/package/metalsmith-sitemap">metalsmith-sitemap</a>. Generates a sitemap.</li>
+<li><a href="https://www.npmjs.com/package/metalsmith-watch">metalsmith-watch</a>. Watches for changes and triggers partial and full rebuilds.</li>
+</ul>
+<p>A lot of people also use a plugin like <a href="https://www.npmjs.com/package/metalsmith-livereload">metalsmith-livereload</a> or <a href="https://www.npmjs.com/package/metalsmith-browser-sync">metalsmith-browser-sync</a> to reload a website in the browser when a site is updated during development. I tend to prefer to run live reload independently from Metalsmith. But it&#39;s up to you - one of the benefits of Metalsmith.</p>
+            </div>
+        </div>
+    </article>
+</div> 
+        <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row top hidden">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <h4>Coding Callback</h4>
+                    <p>
+
+                    </p>               
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="widget">
+             
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <h4>Coding Callback</h4>
+                    <p>
+
+                    </p>               
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                   <div class="widget">
+                    
+                </div>
+            </div>
+
+        </div>
+        <div class="bottom">
+            Copyright © Coding Callback 2018 | <a href="/terms-and-conditions/">Terms and Conditions</a> | <a href="/privacy-policy/">Privacy</a>
+        </div>
+      </div>
+    </footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="/js/prism/prism.js"></script>
+    <script src="/js/prism/prism-javascript.js"></script>
+    <script src="/js/prism/prism-json.js"></script>
+    <script src="/js/prism/prism-visual-basic.js"></script>
+    <script src="/js/prism/prism-markup.js"></script>
+    <script src="/js/prism/prism-markup-templating.js"></script>
+    <script src="/js/prism/prism-handlebars.js"></script>
+
+
+
+
+
+    </body>
+</html>
+

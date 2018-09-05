@@ -177,3 +177,9 @@ pre {
     opacity: 0.8;
 }
  */
+
+
+ pre[data-code="filesystem"] .punctuation,
+ pre[data-code="filesystem"] .keyword {
+    display: none;
+ }

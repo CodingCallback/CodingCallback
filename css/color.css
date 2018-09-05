@@ -159,6 +159,18 @@ pre[data-code="Node.js"]::before,
 .nodejs {
   background: #026e00;
 }
+pre[data-code="Markdown"]::before,
+.nodejs {
+  background: #6c5ce7;
+}
+pre[data-code="Handlebars"]::before,
+.nodejs {
+  background: #e67e22;
+}
+pre[data-code="Filesystem"]::before,
+.nodejs {
+  background: #f39c12;
+}
 p code {
   background: #eee;
 }
