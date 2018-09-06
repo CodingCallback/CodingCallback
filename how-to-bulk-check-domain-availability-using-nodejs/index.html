@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Whilst developing a website for a client I had a need to bulk check the availability of potential .com domain names. Finding .com domain names for the words you would like to use can be quite a job. Most of the websites that allow you to check whether a domain ...">
+    <meta name="description" content="Whilst developing a website for a client I had a need to bulk check domain availability. For a .com domain this can be quite a job. Most of the websites that allow you to check domain availablility only let you check one domain at a time. They can also be ...">
     <meta name="keywords" content="">
     <meta name="author" content="Steve McArthur">
     <meta property="og:title" content="How to Bulk Check Domain Availability Using Node.js">
-    <meta property="og:description" content="Whilst developing a website for a client I had a need to bulk check the availability of potential .com domain names. Finding .com domain names for the words you would like to use can be quite a job. Most of the websites that allow you to check whether a domain ...">
+    <meta property="og:description" content="Whilst developing a website for a client I had a need to bulk check domain availability. For a .com domain this can be quite a job. Most of the websites that allow you to check domain availablility only let you check one domain at a time. They can also be ...">
     <meta property="og:image" content="/img/node-domain-checker.jpg">
     <meta property="og:url" content="https://www.codecallback.co.uk/how-to-bulk-check-domain-availability-using-nodejs">
     
@@ -113,10 +113,12 @@
     <article class="post-content">
         <div class="row">
             <div class="col-lg-12">
-                <p>Whilst developing a website for a client I had a need to bulk check the availability of potential .com domain names. Finding .com domain names for the words you would like to use can be quite a job.</p>
-<p>Most of the websites that allow you to check whether a domain name is available only let you check one domain at a time. They can also be quite slow and push adverts for .neverheardof TLDs.</p>
-<p>I also wanted to easily test for differing word orders. Like &quot;pinkelephants.com&quot; and &quot;elephantspink.com&quot;.</p>
-<p>Node.js has a NPM package available called <a href="https://www.npmjs.com/package/whois">whois</a> (formally &quot;node-whois&quot;). This does a whois lookup for any domain name you supply to it.</p>
+                <p>Whilst developing a website for a client I had a need to bulk check domain availability. For a .com domain this can be quite a job.</p>
+<p>Most of the websites that allow you to check domain availablility only let you check one domain at a time. They can also be quite slow and push adverts for <em>.neverheardof</em> TLDs.</p>
+<p>I also wanted to easily test for differing word orders in potential domain names. If I wanted a domain about pink elephants, &quot;pinkelephants.com&quot;, I also wanted to test for a domain with the two words reversed (£elephantspink.com&quot;) incase my first choice was unavailable. Of course, a lot of the time the words reversed would be plain dumb, but there is always potential for an unforseen fortuitous discovery.</p>
+<p>My second requirement was to save the results to a text file for importing into Excel so I can have a record of what I searched and whether they were available.</p>
+<p>The first step is being able to query the <a href="https://en.wikipedia.org/wiki/WHOIS">whois database</a>. It could be possible to call one of the many websites that allow you to do domain searches and scrape the data. But this could potentially cause problems with bulk queries and triggering the sites denial of service defences!</p>
+<p>But there is a relatively simple solution using Node.js. Node.js has a NPM package available called <a href="https://www.npmjs.com/package/whois">whois</a> (formally &quot;node-whois&quot;). This does a whois lookup for any domain name using the <a href="https://simonecarletti.com/blog/2012/03/whois-protocol/">whois protocol</a>, which operates over TCP port 43. This makes querying a whois database straight forward. Simply require the package and call the method &quot;lookup&quot; with the domain name your are looking for and a callback to handle the returned response.</p>
  <pre data-code="Node.js"><code class="language-javascript">
     var whois = require('whois');
     whois.lookup("pinkelephants.com", function (err, data) {
@@ -130,7 +132,7 @@
     });
 </code></pre>
 
-<p>Typically the data returned for a .com query where a domain already registered will be something like this:</p>
+<p>Typically the data returned for a .com query where a domain is already registered will be something like this:</p>
 <blockquote>
 <p>   Domain Name: PINKELEPHANTS.COM
    Registry Domain ID: 104511878_DOMAIN_COM-VRSN
@@ -146,12 +148,17 @@
 <p>No match for domain &quot;ELEPHANTSPINK.COM&quot;.
 ...</p>
 </blockquote>
-<p>So I search for the phrase on the first line of: &quot;No match for domain&quot;.</p>
-<p>What I did then was get my script to read a list of words or phrases I wanted to test for. If I wanted to test different word orders I would seperate the words with a <code>|</code> (pipe) and the script will use this to split the two words and try two tests with one first and the other second.</p>
+<p>In the returned result I search for the phrase on the first line of: &quot;No match for domain&quot;.</p>
+<h2 id="read-list-of-potential-domain-names-from-a-text-file">Read List of Potential Domain Names from a Text File</h2>
+<p>The next step is to put a list of my potential domain names in a text file which my script will load and loop through and call <code>whois.lookup</code>. However, since I want to do the word swapping thing I&#39;ll stick a <code>|</code> (pipe) within a name to tell the script where to split the two words and perform a swap.</p>
+<blockquote>
+<p>pink|elephants<br>badger|cat<br>dontswap<br>threewordshere  </p>
+</blockquote>
+<p>And the full code:</p>
 <pre data-code="Node.js"><code class="language-javascript">
     var whois = require('whois');
     var fs = require('fs');
-    var path = require('path');
+    vr path = require('path');
 
     function doLookup(domain, cb) {
         whois.lookup(domain, function (err, data) {
@@ -166,7 +173,7 @@
     var noMatch = new RegExp(/No match for domain/);
 
     var txt = fs.readFileSync("./domains.txt", "utf-8");
-    var items = txt.split("\r\n");
+    var items = txt.split("\n");
     var domainList = [];
     function addDomain(name) {
         if (name) {
