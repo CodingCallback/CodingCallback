@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="I got the extremely helpful &quot;Some kind of disk I/O error occurred&quot; message using the System.Data.SQLite .net assembly today. This was a big SQLite show stopper. So I thought it was about time I figured out what was causing this. The error was occurring when I tried to post an ...">
+    <meta name="description" content="Being able to run a webserver anywhere on my development system has become one of my essential developer tricks. Not only to run projects I&#39;m working on, but just to spontaneously run projects/templates as I look around the system. Of course, I am largely talking about html/js browser base projects ...">
     <meta name="keywords" content="">
     <meta name="author" content="Steve McArthur">
-    <meta property="og:title" content="Some kind of disk I/O error occurred - SQLite">
-    <meta property="og:description" content="I got the extremely helpful &quot;Some kind of disk I/O error occurred&quot; message using the System.Data.SQLite .net assembly today. This was a big SQLite show stopper. So I thought it was about time I figured out what was causing this. The error was occurring when I tried to post an ...">
-    <meta property="og:image" content="/img/SQLite2.png">
-    <meta property="og:url" content="https://www.codecallback.co.uk/some-kind-of-disk-io-error-occurred-sqlite">
+    <meta property="og:title" content="Run a Webserver Anywhere">
+    <meta property="og:description" content="Being able to run a webserver anywhere on my development system has become one of my essential developer tricks. Not only to run projects I&#39;m working on, but just to spontaneously run projects/templates as I look around the system. Of course, I am largely talking about html/js browser base projects ...">
+    <meta property="og:image" content="/img/default-image.jpg">
+    <meta property="og:url" content="https://www.codecallback.co.uk/run-a-webserver-anywhere">
     
     <link rel="icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
@@ -31,7 +31,7 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <title>Some kind of disk I/O error occurred - SQLite | Coding Callback</title>
+    <title>Run a Webserver Anywhere | Coding Callback</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:900|Roboto:300,400,400i,500,700,900" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
@@ -91,16 +91,16 @@
   </div>
   </div>
 </nav>          <div class="header-content">
-        <div class="overlay sqlite net">
+        <div class="overlay nodejs">
         <div class="container">
         <div class="header-wrapper">
         <div class="row">
             <div class="col-lg-12">
                 <div class="meta">
          
-    <span>sqlite, .net</span> | December 14th 2010 | By Steve McArthur     
+    <span>Node.js</span> | September 7th 2018 | By Steve McArthur     
 </div>                <div class="page-title">
-                    <h1>Some kind of disk I/O error occurred - SQLite</h1>
+                    <h1>Run a Webserver Anywhere</h1>
                 </div>        
             </div>
         </div>
@@ -112,17 +112,31 @@
     <article class="post-content">
         <div class="row">
             <div class="col-lg-12">
-                <p>I got the extremely helpful &quot;Some kind of disk I/O error occurred&quot; message using the System.Data.SQLite .net assembly today. This was a big SQLite show stopper. So I thought it was about time I figured out what was causing this. The error was occurring when I tried to post an update to the SQLite database in the local App_Data folder of an asp.net application. As soon as the application attempted to post the update I got the dreaded &quot;Some kind of..&quot; error and a SQLite journal file was created in the database folder. After this, the database became unavailable. It became available again once the journal file was deleted, but I was then back in the same situation once another update was attempted. The curious thing was that this behaviour didn&#39;t occur in the development environment, only when uploaded to the live server. My first thought was that the application for some reason didn&#39;t have rights to write to the App_Data folder. But the journal file was writing to the location with no troubles. Finally I hit upon a forum post on the System.Data.SQLite forum. This pointed in the direction of using the statement to set the journal_mode value to something other than &quot;DELETE&quot;. The PRAGMA statement is executed exactly like a query, so all that needs to be done is to execute the statement using a SQLiteCommand object in the same way you would execute any other SQL statement.</p>
-<pre><code class="language-csharp">
-(SQLiteConnection conn = new SQLiteConnection(sqliteConnectionString)) {
-    conn.Open();
-    SQLiteCommand cmd = new SQLiteCommand();
-    cmd.Connection = conn;
-    string pragma = "PRAGMA journal_mode = OFF";
-    cmd.CommandText = pragma;
-    cmd.ExecuteNonQuery();
-}
-</code></pre>
+                <p>Being able to run a webserver anywhere on my development system has become one of my essential developer tricks. Not only to run projects I&#39;m working on, but just to spontaneously run projects/templates as I look around the system. Of course, I am largely talking about html/js browser base projects as I do a lot of static site development. Running php, asp.net or even express projects is a little more restrictive.</p>
+<p>With Apache or IIS you&#39;re largely restricted to the folders they are configured to run sites from. So typically you develop somewhere and then copy the output to the server location.</p>
+<p>Node.js has a number of lightweight webserver packages that can be installed globally. When a package is installed globally it can usually be run anywhere on the system via the command line. So this means that if one of Node&#39;s http server packages is installed globally, it will run anywhere on the system.</p>
+<p>The package I use is the <a href="https://www.npmjs.com/package/live-server">live-server</a> package. I have used the <a href="https://www.npmjs.com/package/http-server">http-server</a> but switched to live-server as it has the live reload ability built in.</p>
+<p>Once the package is installed globally with the <code>npm install -g</code> command, navigate to a project root on your system and run the package via the command line.</p>
+<p><img src="/img/live-server-cmdline.jpg" alt="Live Server Command Line"></p>
+<p>You will notice that the server attempts to run on port 8080. If this port is being used, it trys another one. What this means is that you can run more than one server/site on a system and they will simply run from a different port. The web servers themselves have a small memory footprint, so there&#39;s not really a penalty to running more than one instance.</p>
+<h2 id="add-to-context-menu">Add To Context Menu</h2>
+<p>Navigating the file system via the command line is a bit of a pain. Fortunately, opening the command line within a folder is available by default as a context menu option in explorer - although you will probably have to hold the shift key to see it.</p>
+<p>Doing it this way you only need to type in &quot;live-server&quot;. Simple enough.</p>
+<p>But to make it even easier, I add a &quot;Run Live Server&quot; menu option to the explorer context menu. This involves a bit of registry editing.</p>
+<ul>
+<li>Open up the registry editor.</li>
+<li>Navigate to <code>\HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\background\</code>.</li>
+<li>Right Click on <code>shell</code>.</li>
+<li>Select New &gt; Key.</li>
+<li>Name the key what you want the context menu item to say. Something like &quot;Run Live Server&quot;.</li>
+<li>Underneath your new key, create anothor one and call it <code>command</code>.</li>
+<li>Modify the value of the command key by right clicking <code>(default)</code> in the right side panel and selecting <code>modify</code> from the menu.</li>
+<li><p>Edit the value to run the command line command. In my case <code>cmd.exe /k live-server</code>. I add the <code>/k</code> modifier so that the command line window doesn&#39;t close after running.</p>
+<p><img src="/img/regedit2.gif" alt="Editing registry to add live server to explorer context menu"></p>
+</li>
+</ul>
+<p>Open explorer and you should see your new context menu item.</p>
+<p>You now have a run anywhere webserver.</p>
                             </div>
         </div>
     </article>
