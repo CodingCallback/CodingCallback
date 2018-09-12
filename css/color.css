@@ -171,6 +171,10 @@ pre[data-code="Filesystem"]::before,
 .filesystem {
   background: #f39c12;
 }
+pre[data-code="C#"]::before,
+.csharp {
+  background: #9b59b6;
+}
 p code {
   background: #eee;
 }

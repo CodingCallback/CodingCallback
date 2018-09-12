@@ -24,6 +24,10 @@ body {
     font-size: 1.125rem;
 }
 
+.post-content img {
+    width: 100%;
+}
+
 .head-img {
     padding: 0;
     margin: 0;
