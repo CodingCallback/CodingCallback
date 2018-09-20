@@ -4,32 +4,32 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Metalsmith is a Node.js static website generator. In other words, it produces a website that doesn&#39;t need a database or server-side scripting language like PHP. Just HTML, JavaScript and CSS. For most websites, this is perfectly adequate and the advantages are speed and the consumption of fewer resources. The core ...">
+    <meta name="description" content="Metalsmith is a Node.js static website generator. A static website doesn&#39;t need a database or server-side scripting language like PHP. All it needs is HTML, JavaScript and CSS. For most websites, this is all you want. And the advantage is speed and the consumption of fewer resources. The core Metalsmith ...">
     <meta name="keywords" content="">
     <meta name="author" content="Steve McArthur">
     <meta property="og:title" content="How to Create a Static Website Using Metalsmith">
-    <meta property="og:description" content="Metalsmith is a Node.js static website generator. In other words, it produces a website that doesn&#39;t need a database or server-side scripting language like PHP. Just HTML, JavaScript and CSS. For most websites, this is perfectly adequate and the advantages are speed and the consumption of fewer resources. The core ...">
+    <meta property="og:description" content="Metalsmith is a Node.js static website generator. A static website doesn&#39;t need a database or server-side scripting language like PHP. All it needs is HTML, JavaScript and CSS. For most websites, this is all you want. And the advantage is speed and the consumption of fewer resources. The core Metalsmith ...">
     <meta property="og:image" content="/img/node-domain-checker.jpg">
     <meta property="og:url" content="https://www.codecallback.co.uk/how-create-a-website-using-metalsmith">
     
     <link rel="icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/icons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ed7448">
+    <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ed7448">
 
     <title>How to Create a Static Website Using Metalsmith | Coding Callback</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:900|Roboto:300,400,400i,500,700,900" rel="stylesheet">
@@ -67,9 +67,9 @@
     <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container">
     <a class="navbar-brand" href="/">
-       <span class="sym"><img src="/img/sign.png" ></span>
        <div class="item">
-      <span class="sml">if</span><span class="brand">Coding</span><span class="brand2">Callback</span><span class="sml">then</span>
+       <img src="/img/logo.png" alt="Coding Callback Logo">
+      <span class="brand">Coding</span><span class="brand2">Callback</span>
       </div>
     </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,11 +112,11 @@
     <article class="post-content">
         <div class="row">
             <div class="col-lg-12">
-                <p><a href="http://www.metalsmith.io/">Metalsmith</a> is a Node.js static website generator. In other words, it produces a website that doesn&#39;t need a database or server-side scripting language like PHP. Just HTML, JavaScript and CSS. For most websites, this is perfectly adequate and the advantages are speed and the consumption of fewer resources.</p>
-<p>The core Metalsmith application itself does little other than store some global application metadata and write out files from a source to a build directory. Useful functionality is provided by a series of plugins that slot into the core application read/write process to modify what is being written. Metalsmith is like a train line with plugins being stations on the route where people jump on and change the content of the carriages as the train moves along.</p>
+                <p><a href="http://www.metalsmith.io/">Metalsmith</a> is a Node.js static website generator. A static website doesn&#39;t need a database or server-side scripting language like PHP. All it needs is HTML, JavaScript and CSS. For most websites, this is all you want. And the advantage is speed and the consumption of fewer resources.</p>
+<p>The core Metalsmith application is simple. It writes out files from a source directory to a build directory. It also stores some global application metadata, but doesn&#39;t do anything with it. Useful functionality comes from plugins. Plugins slot into the Metalsmith read/write process and change what is being written. Metalsmith is like a train line. And plugins are stations on that line. At these stations people jump on and change the content of the carriages as the train moves along.</p>
 <p>What this gives us is simplicity. We add functionality when and if we need it. And this functionality is all implemented in the same way.</p>
 <h2 id="the-basic-setup">The Basic Setup</h2>
-<p>To get started with Metalsmith, firstly create a Node.js project in the normal way (<code>npm init</code>). Then install Metalsmith with the npm command <code>npm install metalsmith</code>. In the root of your project, you will need (at least) two folders. One will be for your source files: CSS, js, markdown etc. The other will be for your template/layout files. It doesn&#39;t actually matter what you call your folders as this is part of your application setup. I tend to call them <code>src</code> and <code>layouts</code>, but you might see <code>contents</code> and <code>templates</code> in another project. This is my setup:</p>
+<p>To get started with Metalsmith, create a Node.js project in the normal way (<code>npm init</code>). Then install Metalsmith with the npm command <code>npm install metalsmith</code>. In the root of your project, you will need (at least) two folders. One will be for your source files: CSS, js, markdown etc. The other will be for your template/layout files. It doesn&#39;t actually matter what you call your folders as this is part of your application setup. I tend to call them <code>src</code> and <code>layouts</code>, but you might see <code>contents</code> and <code>templates</code> in another project. This is my setup:</p>
 <pre data-code="Filesystem"><code class="language-coffeescript">
     metalsmith-basic-site
         layouts
@@ -127,7 +127,7 @@
 </code></pre>
 
 <h3 id="application-entry-file">Application Entry File</h3>
-<p>The final part is the application entry file - again, the filename is not important. It&#39;s just what is run by node to start the build process and load your plugins and metadata configurations. Typically this is called either <code>build.js</code> or <code>index.js</code>. We&#39;ll stick with <code>index.js</code>.</p>
+<p>The final part is the application entry file - again, the filename is not important. It&#39;s what node runs to start the build process. And this build process loads your plugins and metadata configurations. Typically this file is called either <code>build.js</code> or <code>index.js</code>. We&#39;ll stick with <code>index.js</code>.</p>
 <p>In the basic example the index.js file looks like this:</p>
  <pre data-code="Node.js"><code class="language-javascript">
     var Metalsmith  = require('metalsmith');
@@ -157,8 +157,7 @@
 
 <p>All Metalsmith applications are initiated in this form. Extra functionality is added by passing a function to the <code>use</code> method. This is where plugins get plugged in. The <code>metadata</code> method sets the global metadata available to all pages in the application. So you can change the site title here instead of editing it on every HTML page it appears on. The <code>source</code> and <code>destination</code> methods do what the tin says. The <code>clean</code> method tells Metalsmith whether or not to delete the destination/build folder before each build. Whilst the <code>build</code> method is always the last station on the Metalsmith line. This tells Metalsmith to start the build process and passes a callback after this process has finished.</p>
 <h3 id="plugins">Plugins</h3>
-<p>This application uses three plugins: markdown, permalinks and layouts. Markdown to process markdown into HTML. Permalinks to create folders in the build destination so that <code>about.html</code> becomes <code>about\index.html</code>. And layouts to process our files with whatever templating language we have chosen to use - <a href="https://handlebarsjs.com/">handlebars</a> in this case here.</p>
-<p>You will notice that all of the plugins are executed functions. They are actually functions that return a function that is then executed by Metalsmith on the train line. Doing it that way allows us to pass parameters to the plugin as they are assigned to Metalsmith.</p>
+<p>This application uses three plugins: markdown, permalinks and layouts. Markdown to process markdown into HTML. Permalinks to enforce extensionless URLs. And layouts to process our files with whatever templating language we have chosen to use. I&#39;ve used <a href="https://handlebarsjs.com/">handlebars</a> here.</p>
 <h3 id="templates">Templates</h3>
 <p>Metalsmith can use just about any template system available. The basic example project here uses handlebars and looks like this:</p>
  <pre data-code="Handlebars"><code class="language-markup">
@@ -200,7 +199,7 @@ layout: post.html
 An interesting post about how it's going to be different this time around. I'm going to write a lot more nowadays and use this blog to improve my writing.
 </code></pre>
 
-<p>As you can see, inside the template tags <code>{{}}</code> are variables such as <code>title</code>, <code>description</code> or <code>url</code>. These are all properties we either defined in the metalsmith metadata inside the index.js file or the <code>front matter</code> metadata of a specific page. The two are then merged together and passed to each page template as members of the local scope or <code>this</code> property. In some templates, you may need to refer to the <code>this</code> context using <code>@</code>, such as <code>@title</code> rather than just <code>this</code>. The effect is that these values will be printed out into the generated file when invoked within a template&#39;s tags. Where a page property conflicts with a Metalsmith metadata property, such as <code>title</code>, the page property will take precedence.</p>
+<p>As you can see, inside the template tags <code>{{}}</code> are variables such as <code>title</code>, <code>description</code> or <code>url</code>. We defined these in the metadata inside the index.js file or the <code>front matter</code> metadata of a specific page. The two metadata sources get merged together and then passed to each page template. This allows us to &#39;do stuff&#39; with them in the template. Often this is printing out text, such as page titles. But other, more complicated, manipulations are possible. You may want to loop through an array of source files to generate a list of blog posts, for example. Sometimes a page property conflicts with a global metadata property. In such cases the page property will take precedence.</p>
 <p>The neat part here is that we can define whatever properties we want on the metadata that is passed to pages. We just add it in the index.js file. We can even define functions on the metadata that can be called from a page.</p>
 <h2 id="next-steps">Next Steps</h2>
 <p>This is the bare-bones setup for Metalsmith. In all likelihood, you will quickly find the need for further plugins. The ones I generally can&#39;t do without are:</p>
